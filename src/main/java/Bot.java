@@ -1,3 +1,4 @@
+import com.sun.jdi.request.StepRequest;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.ParseMode;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -38,7 +39,6 @@ public class Bot extends TelegramLongPollingBot {
         String toxtatilyotgan_kod = "";
         SendMessage sendMessage = new SendMessage();
         SendMessage sendMessage_test_egasi1 = new SendMessage();
-        SendMessage sendMessage_test_egasi2 = new SendMessage();
 
         try {
             if (update.hasMessage()) {
@@ -63,7 +63,8 @@ public class Bot extends TelegramLongPollingBot {
                                 "ko`rinishida yuboriladi.Sizga test kodi beriladi.\n" +
                                 "2. Javoblarni tekshirish uchun : \n" +
                                 "Berilgan test kodi+javoblar' ko`rinishida yuboriladi\n\n" +
-                                "kod+abcdabcd...\n\n" + "(❗Diqqat❗  Savollar sonidan ko`p yoki oz javob yuborish mumkin emas!)\n"
+                                "kod+abcdabcd...\n\n" + "(❗Diqqat❗  Savollar sonidan ko`p yoki oz javob yuborish mumkin emas!)\n" +
+                                "Testni yakunlash uchun  end/test_kodi  ko`rinishida yuborishingiz mumkin."
 
                         );
                         execute(sendMessage);
@@ -80,18 +81,17 @@ public class Bot extends TelegramLongPollingBot {
                             break;
                     }
 
-                    int yulduzchalar_soni = 0;
-                    for (int i = 0; i < xabar.length(); i++) {
-                        if (xabar.charAt(i) == '*') {
-                            yulduzchalar_soni++;
-                        }
-                    }
 
                     int pluslar_soni = 0;
                     for (int i = 0; i < xabar.length(); i++) {
                         if (xabar.charAt(i) == '+') {
                             pluslar_soni++;
                         }
+                    }
+
+                    String end_kalit_sozi = "";
+                    for (int i = 0; i < 3; i++) {
+                        end_kalit_sozi += xabar.charAt(i);
                     }
 
 // ---------------------------------------betaraf hudud quyisi----------------------------------------------
@@ -101,9 +101,13 @@ public class Bot extends TelegramLongPollingBot {
 
 
                     if (test_tuzish_kaliti.equals("test")) {
+                        int yulduzchalar_soni = 0;
+                        for (int i = 0; i < xabar.length(); i++) {
+                            if (xabar.charAt(i) == '*') {
+                                yulduzchalar_soni++;
+                            }
+                        }
                         if (yulduzchalar_soni == 2) {
-
-
                             String Fan_nomi = "";
                             for (int i = 5; i < xabar.length(); i++) {
                                 if (xabar.charAt(i) != '*') {
@@ -166,12 +170,11 @@ public class Bot extends TelegramLongPollingBot {
                         if (berilgan_javoblar_arrayList.size() == 0) {
                             berilgan_javoblar_arrayList.add(new Berilgan_javoblar(1, "0", 0, "0", "0"));
                         }
-                        System.out.println(berilgan_javoblar_arrayList.size());
-                        System.out.println("Boshida " + berilgan_javoblar_arrayList);
+
                         int toplagan_bali = 0;
                         int javob_bergan = 0;
                         for (int i = 0; i < berilgan_javoblar_arrayList.size(); i++) {
-                            if (berilgan_javoblar_arrayList.get(i).getId() == String.valueOf(update.getMessage().getFrom().getId())) {
+                            if (berilgan_javoblar_arrayList.get(i).getId().equals(String.valueOf(update.getMessage().getFrom().getId()))) {
                                 if (berilgan_javoblar_arrayList.get(i).getTest_kodi() != Integer.parseInt(foydalanuvchi_yozgan_kodi)) {
                                     javob_bergan++;
                                 }
@@ -179,12 +182,12 @@ public class Bot extends TelegramLongPollingBot {
                                 javob_bergan++;
                             }
                         }
-                        System.out.println(javob_bergan);
-                        System.out.println(berilgan_javoblar_arrayList);
                         if (javob_bergan == berilgan_javoblar_arrayList.size()) {
                             for (int i = 0; i < tuzgan_savollar_arrayList.size(); i++) {
                                 if (Integer.parseInt(foydalanuvchi_yozgan_kodi) == tuzgan_savollar_arrayList.get(i).getKodi()) {
                                     if (foydalanuvchi_bergan_javoblar_soni == tuzgan_savollar_arrayList.get(i).getHaqiqiy_javoblar_soni()) {
+
+
                                         for (int j = 0; j < foydalanuvchi_bergan_javobi.length(); j++) {
                                             if (tuzgan_savollar_arrayList.get(i).getHaqiqiy_javob().charAt(j) == foydalanuvchi_bergan_javobi.charAt(j)) {
                                                 toplagan_bali++;
@@ -193,10 +196,10 @@ public class Bot extends TelegramLongPollingBot {
 
 
                                         berilgan_javoblar = new Berilgan_javoblar(Integer.parseInt(foydalanuvchi_yozgan_kodi),
-                                                update.getMessage().getFrom().getFirstName(), toplagan_bali, update.getMessage().getFrom().getUserName(), String.valueOf(update.getMessage().getFrom().getId()));
+                                                update.getMessage().getFrom().getFirstName(), toplagan_bali, update.getMessage().getFrom().getUserName(),
+                                                String.valueOf(update.getMessage().getFrom().getId()));
 
                                         berilgan_javoblar_arrayList.add(berilgan_javoblar);
-                                        System.out.println(berilgan_javoblar_arrayList);
 
 
                                         sendMessage.setChatId(update.getMessage().getChatId().toString());
@@ -210,36 +213,101 @@ public class Bot extends TelegramLongPollingBot {
 
                                         sendMessage_test_egasi1.setChatId(tuzgan_savollar_arrayList.get(i).getId());
                                         sendMessage_test_egasi1.setText("Test kodi : " + berilgan_javoblar.getTest_kodi() + "\n" +
-                                                berilgan_javoblar.getIsmi() + "(@" + update.getMessage().getFrom().getUserName() + ") javob berdi.");
+                                                berilgan_javoblar.getIsmi() + "(@" + update.getMessage().getFrom().getUserName() + ") javob berdi." +
+                                                "\nTestni tugatish uchun  end/" + berilgan_javoblar.getTest_kodi() + "  ko`rinishida yuboring");
 
+//                                        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
+//                                        List<List<InlineKeyboardButton>> katta_list = new ArrayList<>();
+//                                        List<InlineKeyboardButton> kichik_list = new ArrayList<>();
+//                                        InlineKeyboardButton inlineKeyboardButton1 = new InlineKeyboardButton();
+//                                        inlineKeyboardButton1.setText("Ko`rish");
+//                                        inlineKeyboardButton1.setCallbackData("Jadval");
+//                                        InlineKeyboardButton inlineKeyboardButton2 = new InlineKeyboardButton();
+//                                        inlineKeyboardButton2.setText("Tugatish");
+//                                        inlineKeyboardButton2.setCallbackData("Tugasin");
+//                                        kichik_list.add(inlineKeyboardButton1);
+//                                        kichik_list.add(inlineKeyboardButton2);
+//                                        katta_list.add(kichik_list);
+//                                        inlineKeyboardMarkup.setKeyboard(katta_list);
+//                                        sendMessage_test_egasi1.setReplyMarkup(inlineKeyboardMarkup);
                                         execute(sendMessage_test_egasi1);
+
+
 
                                     }
                                 }
                             }
                         }
                         else{
-                            sendMessage.setText("Siz javob berib bo`lgansiz");
+                            sendMessage.setText("Siz " + foydalanuvchi_yozgan_kodi +  " - kodli testga javob berib bo`lgansiz");
                             execute(sendMessage);
                         }
                     }
-                }
-            }
-            else if (update.hasCallbackQuery()) {
-                CallbackQuery callbackQuery = update.getCallbackQuery();
-                callbackQuery.getData();
 
+                    // ---------------------------------Javob berish tugadi------------------------------------------------
+
+
+                    //------------------------------------------Testni tugatish-------------------------------------------
+
+
+                    System.out.println(end_kalit_sozi); ///
+                    if (end_kalit_sozi.equals("end")){
+                        int tayoq = 0;
+                        for (int i = 0; i < xabar.length(); i++) {
+                            if (xabar.charAt(i) =='/'){
+                                tayoq++;
+                            }
+                        }
+                        System.out.println(tayoq);  ///
+                        if (tayoq == 1){
+                            String tugatilayotgan_test_kodi = "";
+                            for (int i = 4; i < xabar.length(); i++) {
+                                tugatilayotgan_test_kodi += xabar.charAt(i);
+                            }
+                            for (int i = 0; i < tuzgan_savollar_arrayList.size(); i++) {
+                                if (tuzgan_savollar_arrayList.get(i).getKodi() == Integer.parseInt(tugatilayotgan_test_kodi)){
+                                    if (tuzgan_savollar_arrayList.get(i).getId().equals(String.valueOf(update.getMessage().getFrom().getId()))){
+                                        String jadval = "";
+                                        int tartibi = 1;
+                                        String maqtov = "";
+                                        System.out.println("ishlayapti");
+                                        for (int j = 0; j < berilgan_javoblar_arrayList.size(); j++) {
+                                            if (Integer.parseInt(tugatilayotgan_test_kodi) == berilgan_javoblar_arrayList.get(j).getTest_kodi()){
+                                                if (tartibi == 1){
+                                                    maqtov = "\uD83E\uDD47";
+                                                }
+                                                if (tartibi == 2){
+                                                    maqtov = "\uD83E\uDD48";
+                                                }
+                                                else if (tartibi == 3){
+                                                    maqtov = "\uD83E\uDD49";
+                                                }
+                                                if (berilgan_javoblar_arrayList.get(j).getUsername() != null) {
+                                                    jadval += tartibi + " " + berilgan_javoblar_arrayList.get(j).getIsmi() + "(@" + berilgan_javoblar_arrayList.get(j).getUsername()
+                                                            + ") " + berilgan_javoblar_arrayList.get(j).getToplagan_bali() + " ta " + maqtov + "\n";
+                                                    tartibi++;
+                                                }
+                                                else if (berilgan_javoblar_arrayList.get(j).getUsername() == null){
+                                                    jadval += tartibi + " " + berilgan_javoblar_arrayList.get(j).getIsmi() +  " "
+                                                            + berilgan_javoblar_arrayList.get(j).getToplagan_bali() + " ta " + maqtov + "\n";
+                                                    tartibi++;
+                                                }
+                                            }
+                                        }
+                                        System.out.println(jadval);
+                                        sendMessage.setText(jadval);
+                                        sendMessage.setChatId(update.getMessage().getFrom().getId().toString());
+                                        sendMessage.setParseMode(ParseMode.HTML);
+                                        execute(sendMessage);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }catch (TelegramApiException e){
             e.printStackTrace();
         }
     }
 }
-
-
-//else {
-//
-//        sendMessage.setText("Siz bu testga javob berib bo`lgansiz");
-//        sendMessage.setChatId(update.getMessage().getChatId().toString());
-//        execute(sendMessage);
-//        }
