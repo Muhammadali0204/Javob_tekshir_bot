@@ -2,6 +2,7 @@ import com.sun.jdi.request.StepRequest;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.ParseMode;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -34,16 +35,16 @@ public class Bot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
 
-        System.out.println(update.getMessage().getText());
-        System.out.println(update.getMessage().getFrom().getUserName());
+//        System.out.println(update.getMessage().getText());
+//        System.out.println(update.getMessage().getFrom().getUserName());
 
         String toxtatilyotgan_kod = "";
         SendMessage sendMessage = new SendMessage();
         SendMessage sendMessage2 = new SendMessage();
         SendMessage sendMessage_test_egasi1 = new SendMessage();
+        AnswerCallbackQuery answer_call = new AnswerCallbackQuery();
 
         try {
-
                 if (update.hasMessage()) {
                     Message message = update.getMessage();
                     if (message.hasText()) {
@@ -54,25 +55,10 @@ public class Bot extends TelegramLongPollingBot {
                         sendMessage.setParseMode(ParseMode.HTML);
                         sendMessage2.setParseMode(ParseMode.HTML);
 
-                        if (xabar.equals("start")){
-                            if (update.getMessage().getFrom().getId().toString().equals("804588100")){
-                                admin = "start";
-                            }
-                        }
-                        if (xabar.equals("stop")){
-                            if (update.getMessage().getFrom().getId().toString().equals("804588100")){
-                                admin = "stop";
-                            }
-                        }
-                        if (admin.equals("start")) {
-
 
                         if (xabar.equals("/start")) {
 
                             sendMessage.setText("Salom, Xush kelibsiz!");
-                           
-
-
                             execute(sendMessage);
                         }
 
@@ -237,20 +223,20 @@ public class Bot extends TelegramLongPollingBot {
                                                     berilgan_javoblar.getIsmi() + "(@" + update.getMessage().getFrom().getUserName() + ") javob berdi." +
                                                     "\nTestni tugatish uchun  end/" + berilgan_javoblar.getTest_kodi() + "  ko`rinishida yuboring");
 
-//                                        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
-//                                        List<List<InlineKeyboardButton>> katta_list = new ArrayList<>();
-//                                        List<InlineKeyboardButton> kichik_list = new ArrayList<>();
-//                                        InlineKeyboardButton inlineKeyboardButton1 = new InlineKeyboardButton();
-//                                        inlineKeyboardButton1.setText("Ko`rish");
-//                                        inlineKeyboardButton1.setCallbackData("Jadval");
-//                                        InlineKeyboardButton inlineKeyboardButton2 = new InlineKeyboardButton();
-//                                        inlineKeyboardButton2.setText("Tugatish");
-//                                        inlineKeyboardButton2.setCallbackData("Tugasin");
-//                                        kichik_list.add(inlineKeyboardButton1);
-//                                        kichik_list.add(inlineKeyboardButton2);
-//                                        katta_list.add(kichik_list);
-//                                        inlineKeyboardMarkup.setKeyboard(katta_list);
-//                                        sendMessage_test_egasi1.setReplyMarkup(inlineKeyboardMarkup);
+                                        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
+                                        List<List<InlineKeyboardButton>> katta_list = new ArrayList<>();
+                                        List<InlineKeyboardButton> kichik_list = new ArrayList<>();
+                                        InlineKeyboardButton inlineKeyboardButton1 = new InlineKeyboardButton();
+                                        inlineKeyboardButton1.setText("Ko`rish");
+                                        inlineKeyboardButton1.setCallbackData("Jadval");
+                                        InlineKeyboardButton inlineKeyboardButton2 = new InlineKeyboardButton();
+                                        inlineKeyboardButton2.setText("Tugatish");
+                                        inlineKeyboardButton2.setCallbackData("Tugasin");
+                                        kichik_list.add(inlineKeyboardButton1);
+                                        kichik_list.add(inlineKeyboardButton2);
+                                        katta_list.add(kichik_list);
+                                        inlineKeyboardMarkup.setKeyboard(katta_list);
+                                        sendMessage_test_egasi1.setReplyMarkup(inlineKeyboardMarkup);
                                             execute(sendMessage_test_egasi1);
 
 
@@ -267,67 +253,59 @@ public class Bot extends TelegramLongPollingBot {
 
 
                         //------------------------------------------Testni tugatish-------------------------------------------
-
-
-                        System.out.println(end_kalit_sozi); ///
-                        if (end_kalit_sozi.equals("end")) {
-                            int tayoq = 0;
-                            for (int i = 0; i < xabar.length(); i++) {
-                                if (xabar.charAt(i) == '/') {
-                                    tayoq++;
-                                }
-                            }
-                            System.out.println(tayoq);  ///
-                            if (tayoq == 1) {
-                                String tugatilayotgan_test_kodi = "";
-                                for (int i = 4; i < xabar.length(); i++) {
-                                    tugatilayotgan_test_kodi += xabar.charAt(i);
-                                }
-                                for (int i = 0; i < tuzgan_savollar_arrayList.size(); i++) {
-                                    if (tuzgan_savollar_arrayList.get(i).getKodi() == Integer.parseInt(tugatilayotgan_test_kodi)) {
-                                        if (tuzgan_savollar_arrayList.get(i).getId().equals(String.valueOf(update.getMessage().getFrom().getId()))) {
-                                            String jadval = "";
-                                            int tartibi = 1;
-                                            String maqtov = "";
-                                            System.out.println("ishlayapti");
-                                            for (int j = 0; j < berilgan_javoblar_arrayList.size(); j++) {
-                                                if (Integer.parseInt(tugatilayotgan_test_kodi) == berilgan_javoblar_arrayList.get(j).getTest_kodi()) {
-                                                    if (tartibi == 1) {
-                                                        maqtov = "\uD83E\uDD47";
-                                                    }
-                                                    if (tartibi == 2) {
-                                                        maqtov = "\uD83E\uDD48";
-                                                    } else if (tartibi == 3) {
-                                                        maqtov = "\uD83E\uDD49";
-                                                    }
-                                                    if (berilgan_javoblar_arrayList.get(j).getUsername() != null) {
-                                                        jadval += tartibi + " " + berilgan_javoblar_arrayList.get(j).getIsmi() + "(@" + berilgan_javoblar_arrayList.get(j).getUsername()
-                                                                + ") " + berilgan_javoblar_arrayList.get(j).getToplagan_bali() + " ta " + maqtov + "\n";
-                                                        tartibi++;
-                                                    } else if (berilgan_javoblar_arrayList.get(j).getUsername() == null) {
-                                                        jadval += tartibi + " " + berilgan_javoblar_arrayList.get(j).getIsmi() + " "
-                                                                + berilgan_javoblar_arrayList.get(j).getToplagan_bali() + " ta " + maqtov + "\n";
-                                                        tartibi++;
-                                                    }
-                                                }
+                    }
+                }
+                else if (update.hasCallbackQuery()){
+                    CallbackQuery callbackQuery = update.getCallbackQuery();
+                    sendMessage.setChatId(callbackQuery.getFrom().getId().toString());
+                    String id = callbackQuery.getId();
+                    String data = callbackQuery.getData();
+                    if (data.equals("Jadval")){
+                        answer_call.setCallbackQueryId(id);
+                        answer_call.setText("Jadval");
+                        sendMessage.setText("Jadval ishladi");
+                        execute(answer_call);
+                        execute(sendMessage);
+                    }
+                    else if (data.equals("Tugasin")) {
+                        for (int i = 0; i < tuzgan_savollar_arrayList.size(); i++) {
+                            if (tuzgan_savollar_arrayList.get(i).getKodi() == Integer.parseInt(tugatilayotgan_test_kodi)) {
+                                if (tuzgan_savollar_arrayList.get(i).getId().equals(String.valueOf(update.getMessage().getFrom().getId()))) {
+                                    String jadval = "";
+                                    int tartibi = 1;
+                                    String maqtov = "";
+                                    System.out.println("ishlayapti");
+                                    for (int j = 0; j < berilgan_javoblar_arrayList.size(); j++) {
+                                        if (Integer.parseInt(tugatilayotgan_test_kodi) == berilgan_javoblar_arrayList.get(j).getTest_kodi()) {
+                                            if (tartibi == 1) {
+                                                maqtov = "\uD83E\uDD47";
                                             }
-                                            System.out.println(jadval);
-                                            sendMessage.setText(jadval);
-                                            sendMessage.setChatId(update.getMessage().getFrom().getId().toString());
-                                            sendMessage.setParseMode(ParseMode.HTML);
-                                            execute(sendMessage);
+                                            if (tartibi == 2) {
+                                                maqtov = "\uD83E\uDD48";
+                                            } else if (tartibi == 3) {
+                                                maqtov = "\uD83E\uDD49";
+                                            }
+                                            if (berilgan_javoblar_arrayList.get(j).getUsername() != null) {
+                                                jadval += tartibi + " " + berilgan_javoblar_arrayList.get(j).getIsmi() + "(@" + berilgan_javoblar_arrayList.get(j).getUsername()
+                                                        + ") " + berilgan_javoblar_arrayList.get(j).getToplagan_bali() + " ta " + maqtov + "\n";
+                                                tartibi++;
+                                            } else if (berilgan_javoblar_arrayList.get(j).getUsername() == null) {
+                                                jadval += tartibi + " " + berilgan_javoblar_arrayList.get(j).getIsmi() + " "
+                                                        + berilgan_javoblar_arrayList.get(j).getToplagan_bali() + " ta " + maqtov + "\n";
+                                                tartibi++;
+                                            }
                                         }
                                     }
+                                    System.out.println(jadval);
+                                    sendMessage.setText(jadval);
+                                    sendMessage.setChatId(update.getMessage().getFrom().getId().toString());
+                                    sendMessage.setParseMode(ParseMode.HTML);
+                                    execute(sendMessage);
                                 }
                             }
                         }
-                    }if (admin.equals("stop")){
-                            sendMessage.setChatId(update.getMessage().getFrom().getId().toString());
-                            sendMessage.setText("Bot admin tomonidan to`xtatilgan");
-                            execute(sendMessage);
-                        }
+                    }
                 }
-            }
         }catch (TelegramApiException e){
             e.printStackTrace();
         }
