@@ -1,26 +1,28 @@
 public class Berilgan_javoblar {
-    private int test_kodi;
+    private String test_kodi;
     private String ismi;
     private int toplagan_bali;
     private String username;
     private String id;
+    private String xato_javoblari;
 
-    public Berilgan_javoblar(int test_kodi, String ismi, int toplagan_bali, String username, String id) {
+    public Berilgan_javoblar(String test_kodi, String ismi, int toplagan_bali, String username, String id, String xato_javoblari) {
         this.test_kodi = test_kodi;
         this.ismi = ismi;
         this.toplagan_bali = toplagan_bali;
         this.username = username;
         this.id = id;
+        this.xato_javoblari = xato_javoblari;
     }
 
     public Berilgan_javoblar() {
     }
 
-    public int getTest_kodi() {
+    public String getTest_kodi() {
         return test_kodi;
     }
 
-    public void setTest_kodi(int test_kodi) {
+    public void setTest_kodi(String test_kodi) {
         this.test_kodi = test_kodi;
     }
 
@@ -56,14 +58,20 @@ public class Berilgan_javoblar {
         this.id = id;
     }
 
+    public String getXato_javoblari() {
+        return xato_javoblari;
+    }
+
+    public void setXato_javoblari(String xato_javoblari) {
+        this.xato_javoblari = xato_javoblari;
+    }
+
     @Override
     public String toString() {
-        return "Berilgan_javoblar{" +
-                "test_kodi=" + test_kodi +
-                ", ismi='" + ismi + '\'' +
-                ", toplagan_bali=" + toplagan_bali +
-                ", username='" + username + '\'' +
-                ", id='" + id + '\'' +
-                '}';
+        return  "❗️Test kodi= " + test_kodi + '\n' +
+                "Ismi = " + ismi + '\n' +
+                "Toplagan bali = " + toplagan_bali +
+                "\nUsername = @" + username + '\n' +
+                "Id = " + id + "❗️\n\n\n";
     }
 }

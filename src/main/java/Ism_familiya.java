@@ -22,4 +22,12 @@ public class Ism_familiya {
     public void setId(String id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Ism_familiya{" +
+                "ism_familiya='" + ism_familiya + '\'' +
+                ", id='" + id + '\'' +
+                '}';
+    }
 }
