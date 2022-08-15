@@ -17,7 +17,7 @@
         <dependency>
             <groupId>org.telegram</groupId>
             <artifactId>telegrambots</artifactId>
-            <version>6.1.0</version>
+            <version>5.7.1</version>
         </dependency>
 
         <dependency>
