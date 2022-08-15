@@ -63,9 +63,9 @@ public class Bot extends TelegramLongPollingBot {
         try {
 
 
-         //   ----------------------------------------Fayllardan o`qish -----------------------------------------------------------
+            //   ----------------------------------------Fayllardan o`qish -----------------------------------------------------------
 
-            if (test_kodi == 1){
+            if (test_kodi == 1) {
                 if (!"test_kodi.txt".isEmpty()) {
                     try {
                         reader = new FileReader("test_kodi.txt");
@@ -78,7 +78,7 @@ public class Bot extends TelegramLongPollingBot {
                     }
                 }
             }
-            if (admins.isEmpty()){
+            if (admins.isEmpty()) {
                 reader = new FileReader("admins.txt");
                 BufferedReader bufferred_reader = new BufferedReader(reader);
                 String line = bufferred_reader.readLine();
@@ -107,7 +107,7 @@ public class Bot extends TelegramLongPollingBot {
                 }
             }
 
-            if (tuzgan_savollar_arrayList.size() == 0){
+            if (tuzgan_savollar_arrayList.size() == 0) {
                 if (!"tuzilgan_savollar.txt".isEmpty()) {
                     try {
                         reader = new FileReader("tuzilgan_savollar.txt");
@@ -126,7 +126,7 @@ public class Bot extends TelegramLongPollingBot {
                 }
             }
 
-            if (berilgan_javoblar_arrayList.size() == 0){
+            if (berilgan_javoblar_arrayList.size() == 0) {
                 if (!"berilgan_javoblar.txt".isEmpty()) {
                     try {
                         reader = new FileReader("berilgan_javoblar.txt");
@@ -145,7 +145,7 @@ public class Bot extends TelegramLongPollingBot {
                 }
             }
 
-            if (startbosganlar.size() == 0){
+            if (startbosganlar.size() == 0) {
                 if (!"start_bosganlar.txt".isEmpty()) {
                     try {
                         reader = new FileReader("start_bosganlar.txt");
@@ -176,7 +176,7 @@ public class Bot extends TelegramLongPollingBot {
                     String xabar = message.getText();
                     int tolqin_bormi = 0;
                     for (int i = 0; i < xabar.length(); i++) {
-                        if (xabar.charAt(i) == '~'){
+                        if (xabar.charAt(i) == '~') {
                             tolqin_bormi++;
                         }
                     }
@@ -287,29 +287,29 @@ public class Bot extends TelegramLongPollingBot {
                                     for (int i = 3; i < xabar.length(); i++) {
                                         ismi += xabar.charAt(i);
                                     }
-                                    int bormi = 0;
-                                    for (int i = 0; i < ismlar.size(); i++) {
-                                        if (!ismlar.get(i).getId().equals(update.getMessage().getFrom().getId().toString())) {
-                                            bormi++;
-                                        } else {
-                                            ismlar.get(i).setIsm_familiya(ismi);
-                                            sendMessage.setText("\uD83D\uDD04 Ism familiyangiz " + ismi + "'ga o`zgartirildi!");
-                                            try {
-                                                writer = new FileWriter("ismlar.txt");
-                                                for (int qwewq = 0; qwewq < ismlar.size(); qwewq++) {
-                                                    ismlar_string += ismlar.get(qwewq).getIsm_familiya() + "~" + ismlar.get(qwewq).getId() + "\n";
+                                    if (ismi != "") {
+                                        int bormi = 0;
+                                        for (int i = 0; i < ismlar.size(); i++) {
+                                            if (!ismlar.get(i).getId().equals(update.getMessage().getFrom().getId().toString())) {
+                                                bormi++;
+                                            } else {
+                                                ismlar.get(i).setIsm_familiya(ismi);
+                                                sendMessage.setText("\uD83D\uDD04 Ism familiyangiz " + ismi + "'ga o`zgartirildi!");
+                                                try {
+                                                    writer = new FileWriter("ismlar.txt");
+                                                    for (int qwewq = 0; qwewq < ismlar.size(); qwewq++) {
+                                                        ismlar_string += ismlar.get(qwewq).getIsm_familiya() + "~" + ismlar.get(qwewq).getId() + "\n";
+                                                    }
+                                                    writer.write(ismlar_string);
+                                                    writer.close();
+                                                } catch (IOException e) {
+                                                    e.printStackTrace();
                                                 }
-                                                writer.write(ismlar_string);
-                                                writer.close();
-                                            } catch (IOException e) {
-                                                e.printStackTrace();
-                                            }
 
-                                            execute(sendMessage);
+                                                execute(sendMessage);
+                                            }
                                         }
-                                    }
-                                    if (bormi == ismlar.size()) {
-                                        if (ismi != "") {
+                                        if (bormi == ismlar.size()) {
                                             ismlar.add(new Ism_familiya(ismi, update.getMessage().getFrom().getId().toString()));
                                             try {
                                                 writer = new FileWriter("ismlar.txt");
@@ -323,10 +323,10 @@ public class Bot extends TelegramLongPollingBot {
                                             }
                                             sendMessage.setText("Tabriklaymiz " + ismi + " !!! Botdan foydalanishingiz mumkin.✅");
                                             execute(sendMessage);
-                                        } else {
-                                            sendMessage.setText("Ism familiyangiz bo`sh bo`lishi mumkin emas ❗️");
-                                            execute(sendMessage);
                                         }
+                                    } else {
+                                        sendMessage.setText("Ism familiyangiz bo`sh bo`lishi mumkin emas ❗️");
+                                        execute(sendMessage);
                                     }
                                 }
                             }
@@ -388,7 +388,7 @@ public class Bot extends TelegramLongPollingBot {
                                         String start = "";
                                         long t = 1;
                                         for (int j = 1; j < startbosganlar.size(); j++) {
-                                            start += t + ". " + startbosganlar.get(j).getIsmi()+ " " + startbosganlar.get(j).getId() + "\n";
+                                            start += t + ". " + startbosganlar.get(j).getIsmi() + " " + startbosganlar.get(j).getId() + "\n";
                                             t++;
                                         }
                                         sendMessage.setText(start);
@@ -448,7 +448,7 @@ public class Bot extends TelegramLongPollingBot {
                                         for (int j = 0; j < xabar.length(); j++) {
                                             if (xabar.charAt(j) != '^') {
                                                 admin_sozi += xabar.charAt(j);
-                                            }else break;
+                                            } else break;
                                         }
                                     }
 
@@ -496,14 +496,14 @@ public class Bot extends TelegramLongPollingBot {
                                     }
                                     int daraja = 0;
                                     for (int j = 0; j < xabar.length(); j++) {
-                                        if (xabar.charAt(j) == '/'){
+                                        if (xabar.charAt(j) == '/') {
                                             daraja++;
                                         }
                                     }
-                                    String []tyu;
+                                    String[] tyu;
                                     if (daraja == 2) {
                                         tyu = xabar.split("/");
-                                        if (tyu[0].equals("send")){
+                                        if (tyu[0].equals("send")) {
                                             xabari_qanday = 1;
                                             sendMessage.setChatId(tyu[1]);
                                             sendMessage.setText(tyu[2]);
@@ -557,7 +557,7 @@ public class Bot extends TelegramLongPollingBot {
                                 // ----------------------------Test tuzish----------------------------------------------------------
 
 
-                                if (test_tuzish_kaliti.equals("Test")) {
+                                if (test_tuzish_kaliti.equals("Test") || test_tuzish_kaliti.equals("test")) {
                                     xabari_qanday = 1;
                                     int yulduzchalar_soni = 0;
                                     for (int i = 0; i < xabar.length(); i++) {
@@ -600,7 +600,6 @@ public class Bot extends TelegramLongPollingBot {
                                             } catch (IOException e) {
                                                 e.printStackTrace();
                                             }
-
 
 
                                             test_kodi++;
@@ -715,8 +714,7 @@ public class Bot extends TelegramLongPollingBot {
                                                     for (int j = 0; j < foydalanuvchi_bergan_javobi.length(); j++) {
                                                         if (tuzgan_savollar_arrayList.get(i).getHaqiqiy_javob().charAt(j) == foydalanuvchi_bergan_javobi.charAt(j)) {
                                                             toplagan_bali++;
-                                                        }
-                                                        else{
+                                                        } else {
                                                             xato_javoblari += (j + 1) + ", ";
                                                         }
                                                     }
@@ -725,7 +723,7 @@ public class Bot extends TelegramLongPollingBot {
                                                             xato_javoblari2 += xato_javoblari.charAt(j);
                                                         }
                                                     }
-                                                    if (xato_javoblari2 == ""){
+                                                    if (xato_javoblari2 == "") {
                                                         xato_javoblari2 = "0";
                                                     }
 
@@ -740,9 +738,9 @@ public class Bot extends TelegramLongPollingBot {
                                                     for (int qwer = 0; qwer < berilgan_javoblar_arrayList.size(); qwer++) {
                                                         berilgan_javoblar_string += berilgan_javoblar_arrayList.get(qwer).getTest_kodi() + "~" +
                                                                 berilgan_javoblar_arrayList.get(qwer).getIsmi() + "~" +
-                                                        String.valueOf(berilgan_javoblar_arrayList.get(qwer).getToplagan_bali()) + "~" +
+                                                                String.valueOf(berilgan_javoblar_arrayList.get(qwer).getToplagan_bali()) + "~" +
                                                                 berilgan_javoblar_arrayList.get(qwer).getUsername() + "~" +
-                                                                berilgan_javoblar_arrayList.get(qwer).getId() + "~" + berilgan_javoblar_arrayList.get(qwer).getXato_javoblari()+ "\n";
+                                                                berilgan_javoblar_arrayList.get(qwer).getId() + "~" + berilgan_javoblar_arrayList.get(qwer).getXato_javoblari() + "\n";
                                                     }
                                                     writer.write(berilgan_javoblar_string);
                                                     writer.close();
@@ -824,7 +822,7 @@ public class Bot extends TelegramLongPollingBot {
                             sendMessage.setText("Botdan qanday foydalanishni ko`rib chiqing ‼️");
                             execute(sendMessage);
                         }
-                    }else{
+                    } else {
                         sendMessage.setChatId(update.getMessage().getChatId().toString());
                         sendMessage.setParseMode(ParseMode.HTML);
                         sendMessage.setText("'~' belgidan foydalanmang");
@@ -966,11 +964,10 @@ public class Bot extends TelegramLongPollingBot {
                         for (int i = 0; i < berilgan_javoblar_arrayList.size(); i++) {
                             if (berilgan_javoblar_arrayList.get(i).getTest_kodi().equals(a[1])) {
                                 sendMessage.setChatId(berilgan_javoblar_arrayList.get(i).getId());
-                                if (berilgan_javoblar_arrayList.get(i).getXato_javoblari() == "0"){
+                                if (berilgan_javoblar_arrayList.get(i).getXato_javoblari() == "0") {
                                     sendMessage.setText(berilgan_javoblar_arrayList.get(i).getTest_kodi() +
                                             " - kodli testda xatolaringiz yo`q");
-                                }
-                                else {
+                                } else {
                                     String xatolar = berilgan_javoblar_arrayList.get(i).getTest_kodi() +
                                             " - kodli testdagi xatolaringiz : \n" + berilgan_javoblar_arrayList.get(i).getXato_javoblari();
                                     sendMessage.setText(xatolar);
