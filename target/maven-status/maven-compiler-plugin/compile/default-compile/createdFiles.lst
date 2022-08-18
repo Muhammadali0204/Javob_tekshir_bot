@@ -1,7 +1,7 @@
-Main.class
-Start_bosganlar.class
-Ism_familiya.class
-Berilgan_javoblar.class
-Admins.class
-Tuzgan_savollar.class
-Bot.class
+org\Max\Main.class
+org\Max\Ism_familiya.class
+org\Max\Bot.class
+org\Max\Start_bosganlar.class
+org\Max\Berilgan_javoblar.class
+org\Max\Admins.class
+org\Max\Tuzgan_savollar.class
