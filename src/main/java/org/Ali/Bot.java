@@ -67,7 +67,7 @@ public class Bot extends TelegramLongPollingBot {
             if (test_kodi == 1) {
                 if (!"test_kodi.txt".isEmpty()) {
                     try {
-                        reader = new FileReader("test_kodi.txt");
+                        reader = new FileReader("src/main/java/org/Ali/test_kodi.txt");
                         BufferedReader bufferred_reader = new BufferedReader(reader);
                         String line = bufferred_reader.readLine();
                         test_kodi = Integer.parseInt(line);
@@ -78,7 +78,7 @@ public class Bot extends TelegramLongPollingBot {
                 }
             }
             if (admins.isEmpty()) {
-                reader = new FileReader("admins.txt");
+                reader = new FileReader("src/main/java/org/Ali/admins.txt");
                 BufferedReader bufferred_reader = new BufferedReader(reader);
                 String line = bufferred_reader.readLine();
                 while (line != null) {
@@ -90,7 +90,7 @@ public class Bot extends TelegramLongPollingBot {
             if (ismlar.isEmpty()) {
                 if (!"ismlar.txt".isEmpty()) {
                     try {
-                        reader = new FileReader("ismlar.txt");
+                        reader = new FileReader("src/main/java/org/Ali/ismlar.txt");
                         BufferedReader bufferred_reader = new BufferedReader(reader);
                         String line = bufferred_reader.readLine();
                         while (line != null) {
@@ -109,7 +109,7 @@ public class Bot extends TelegramLongPollingBot {
             if (tuzgan_savollar_arrayList.size() == 0) {
                 if (!"tuzilgan_savollar.txt".isEmpty()) {
                     try {
-                        reader = new FileReader("tuzilgan_savollar.txt");
+                        reader = new FileReader("src/main/java/org/Ali/tuzilgan_savollar.txt");
                         BufferedReader bufferred_reader = new BufferedReader(reader);
                         String line = bufferred_reader.readLine();
                         while (line != null) {
@@ -128,7 +128,7 @@ public class Bot extends TelegramLongPollingBot {
             if (berilgan_javoblar_arrayList.size() == 0) {
                 if (!"berilgan_javoblar.txt".isEmpty()) {
                     try {
-                        reader = new FileReader("berilgan_javoblar.txt");
+                        reader = new FileReader("src/main/java/org/Ali/berilgan_javoblar.txt");
                         BufferedReader bufferred_reader = new BufferedReader(reader);
                         String line = bufferred_reader.readLine();
                         while (line != null) {
@@ -147,7 +147,7 @@ public class Bot extends TelegramLongPollingBot {
             if (startbosganlar.size() == 0) {
                 if (!"start_bosganlar.txt".isEmpty()) {
                     try {
-                        reader = new FileReader("start_bosganlar.txt");
+                        reader = new FileReader("src/main/java/org/Ali/start_bosganlar.txt");
                         BufferedReader bufferred_reader = new BufferedReader(reader);
                         String line = bufferred_reader.readLine();
                         while (line != null) {
@@ -207,7 +207,7 @@ public class Bot extends TelegramLongPollingBot {
                                 }
                                 if (t == startbosganlar.size()) {
                                     startbosganlar.add(new Start_bosganlar(update.getMessage().getFrom().getFirstName(), String.valueOf(update.getMessage().getFrom().getId())));
-                                    writer = new FileWriter("start_bosganlar.txt");
+                                    writer = new FileWriter("src/main/java/org/Ali/start_bosganlar.txt");
                                     for (int qwertr = 0; qwertr < startbosganlar.size(); qwertr++) {
                                         start_bosganlar_string += startbosganlar.get(qwertr).getIsmi() + "~" + startbosganlar.get(qwertr).getId() + "\n";
                                     }
@@ -295,7 +295,7 @@ public class Bot extends TelegramLongPollingBot {
                                                 ismlar.get(i).setIsm_familiya(ismi);
                                                 sendMessage.setText("\uD83D\uDD04 Ism familiyangiz " + ismi + "'ga o`zgartirildi!");
                                                 try {
-                                                    writer = new FileWriter("ismlar.txt");
+                                                    writer = new FileWriter("src/main/java/org/Ali/ismlar.txt");
                                                     for (int qwewq = 0; qwewq < ismlar.size(); qwewq++) {
                                                         ismlar_string += ismlar.get(qwewq).getIsm_familiya() + "~" + ismlar.get(qwewq).getId() + "\n";
                                                     }
@@ -311,7 +311,7 @@ public class Bot extends TelegramLongPollingBot {
                                         if (bormi == ismlar.size()) {
                                             ismlar.add(new Ism_familiya(ismi, update.getMessage().getFrom().getId().toString()));
                                             try {
-                                                writer = new FileWriter("ismlar.txt");
+                                                writer = new FileWriter("src/main/java/org/Ali/ismlar.txt");
                                                 for (int i = 0; i < ismlar.size(); i++) {
                                                     ismlar_string += ismlar.get(i).getIsm_familiya() + "~" + ismlar.get(i).getId() + "\n";
                                                 }
@@ -458,7 +458,7 @@ public class Bot extends TelegramLongPollingBot {
                                             id_admin += xabar.charAt(j);
                                         }
                                         admins.add(new Admins(id_admin));
-                                        writer = new FileWriter("admins.txt");
+                                        writer = new FileWriter("src/main/java/org/Ali/admins.txt");
                                         for (int j = 0; j < admins.size(); j++) {
                                             adminlar_string += admins.get(j).getId() + "\n";
                                         }
@@ -478,7 +478,7 @@ public class Bot extends TelegramLongPollingBot {
                                         for (int j = 0; j < admins.size(); j++) {
                                             if (id_admin.equals(admins.get(j).getId())) {
                                                 admins.remove(admins.get(j));
-                                                writer = new FileWriter("admins.txt");
+                                                writer = new FileWriter("src/main/java/org/Ali/admins.txt");
                                                 for (int zxc = 0; zxc < admins.size(); zxc++) {
                                                     adminlar_string += admins.get(zxc).getId() + "\n";
                                                 }
@@ -586,7 +586,7 @@ public class Bot extends TelegramLongPollingBot {
                                                     update.getMessage().getFrom().getUserName());
                                             tuzgan_savollar_arrayList.add(tuzgan_savollar);
                                             try {
-                                                writer = new FileWriter("tuzilgan_savollar.txt");
+                                                writer = new FileWriter("src/main/java/org/Ali/tuzilgan_savollar.txt");
                                                 for (int qwewq = 0; qwewq < tuzgan_savollar_arrayList.size(); qwewq++) {
                                                     tuzilgan_savollar_string += tuzgan_savollar_arrayList.get(qwewq).getKodi() + "~" +
                                                             tuzgan_savollar_arrayList.get(qwewq).getFan_nomi() + "~" +
@@ -630,7 +630,7 @@ public class Bot extends TelegramLongPollingBot {
                                                 }
                                             }
 
-                                            writer = new FileWriter("test_kodi.txt");
+                                            writer = new FileWriter("src/main/java/org/Ali/test_kodi.txt");
                                             writer.write(String.valueOf(test_kodi));
                                             writer.close();
 
@@ -733,7 +733,7 @@ public class Bot extends TelegramLongPollingBot {
 
                                                     berilgan_javoblar_arrayList.add(berilgan_javoblar);
 
-                                                    writer = new FileWriter("berilgan_javoblar.txt");
+                                                    writer = new FileWriter("src/main/java/org/Ali/berilgan_javoblar.txt");
                                                     for (int qwer = 0; qwer < berilgan_javoblar_arrayList.size(); qwer++) {
                                                         berilgan_javoblar_string += berilgan_javoblar_arrayList.get(qwer).getTest_kodi() + "~" +
                                                                 berilgan_javoblar_arrayList.get(qwer).getIsmi() + "~" +
@@ -978,7 +978,7 @@ public class Bot extends TelegramLongPollingBot {
                         }
 
                         try {
-                            writer = new FileWriter("tuzilgan_savollar.txt");
+                            writer = new FileWriter("src/main/java/org/Ali/tuzilgan_savollar.txt");
                             for (int qwewq = 0; qwewq < tuzgan_savollar_arrayList.size(); qwewq++) {
                                 tuzilgan_savollar_string += tuzgan_savollar_arrayList.get(qwewq).getKodi() + "~" +
                                         tuzgan_savollar_arrayList.get(qwewq).getFan_nomi() + "~" +
@@ -992,7 +992,7 @@ public class Bot extends TelegramLongPollingBot {
                             e.printStackTrace();
                         }
 
-                        writer = new FileWriter("berilgan_javoblar.txt");
+                        writer = new FileWriter("src/main/java/org/Ali/berilgan_javoblar.txt");
                         for (int qwer = 0; qwer < berilgan_javoblar_arrayList.size(); qwer++) {
                             berilgan_javoblar_string += berilgan_javoblar_arrayList.get(qwer).getTest_kodi() + "~" +
                                     berilgan_javoblar_arrayList.get(qwer).getIsmi() + "~" +
