@@ -32,7 +32,7 @@ public class Bot extends TelegramLongPollingBot {
         return "5277451412:AAELgo6IeI1d6C_Wtns4oB0XBM9omnz64hc";
     }
 
-    int test_kodi = 1;
+    int test_kodi = 100;
 
 
     ArrayList<Tuzgan_savollar> tuzgan_savollar_arrayList = new ArrayList<>();
