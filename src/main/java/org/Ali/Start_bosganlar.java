@@ -24,4 +24,12 @@ public class Start_bosganlar {
     public void setId(String id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Start_bosganlar{" +
+                "ismi='" + ismi + '\'' +
+                ", id='" + id + '\'' +
+                '}';
+    }
 }

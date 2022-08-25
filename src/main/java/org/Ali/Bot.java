@@ -19,6 +19,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 
 
 public class Bot extends TelegramLongPollingBot {
@@ -32,7 +33,7 @@ public class Bot extends TelegramLongPollingBot {
         return "5277451412:AAELgo6IeI1d6C_Wtns4oB0XBM9omnz64hc";
     }
 
-    int test_kodi = 100;
+    int test_kodi = 1;
 
 
     ArrayList<Tuzgan_savollar> tuzgan_savollar_arrayList = new ArrayList<>();
@@ -64,104 +65,104 @@ public class Bot extends TelegramLongPollingBot {
 
             //   ----------------------------------------Fayllardan o`qish -----------------------------------------------------------
 
-//            if (test_kodi == 1) {
-//                if (!"test_kodi.txt".isEmpty()) {
-//                    try {
-//                        reader = new FileReader("src/main/java/org/Ali/test_kodi.txt");
-//                        BufferedReader bufferred_reader = new BufferedReader(reader);
-//                        String line = bufferred_reader.readLine();
-//                        test_kodi = Integer.parseInt(line);
-//                        reader.close();
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//            if (admins.isEmpty()) {
-//                reader = new FileReader("src/main/java/org/Ali/admins.txt");
-//                BufferedReader bufferred_reader = new BufferedReader(reader);
-//                String line = bufferred_reader.readLine();
-//                while (line != null) {
-//                    admins.add(new Admins(line));
-//                    line = bufferred_reader.readLine();
-//                }
-//                reader.close();
-//            }
-//            if (ismlar.isEmpty()) {
-//                if (!"ismlar.txt".isEmpty()) {
-//                    try {
-//                        reader = new FileReader("src/main/java/org/Ali/ismlar.txt");
-//                        BufferedReader bufferred_reader = new BufferedReader(reader);
-//                        String line = bufferred_reader.readLine();
-//                        while (line != null) {
-//                            String[] s;
-//                            s = line.split("~");
-//                            ismlar.add(new Ism_familiya(s[0], s[1]));
-//                            line = bufferred_reader.readLine();
-//                        }
-//                        reader.close();
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//
-//            if (tuzgan_savollar_arrayList.size() == 0) {
-//                if (!"tuzilgan_savollar.txt".isEmpty()) {
-//                    try {
-//                        reader = new FileReader("src/main/java/org/Ali/tuzilgan_savollar.txt");
-//                        BufferedReader bufferred_reader = new BufferedReader(reader);
-//                        String line = bufferred_reader.readLine();
-//                        while (line != null) {
-//                            String[] s = new String[6];
-//                            s = line.split("~");
-//                            tuzgan_savollar_arrayList.add(new Tuzgan_savollar(s[0], s[1], s[2], Integer.parseInt(s[3]), s[4], s[5]));
-//                            line = bufferred_reader.readLine();
-//                        }
-//                        reader.close();
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//
-//            if (berilgan_javoblar_arrayList.size() == 0) {
-//                if (!"berilgan_javoblar.txt".isEmpty()) {
-//                    try {
-//                        reader = new FileReader("src/main/java/org/Ali/berilgan_javoblar.txt");
-//                        BufferedReader bufferred_reader = new BufferedReader(reader);
-//                        String line = bufferred_reader.readLine();
-//                        while (line != null) {
-//                            String[] s;
-//                            s = line.split("~");
-//                            berilgan_javoblar_arrayList.add(new Berilgan_javoblar(s[0], s[1], Integer.parseInt(s[2]), s[3], s[4], s[5]));
-//                            line = bufferred_reader.readLine();
-//                        }
-//                        reader.close();
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//
-//            if (startbosganlar.size() == 0) {
-//                if (!"start_bosganlar.txt".isEmpty()) {
-//                    try {
-//                        reader = new FileReader("src/main/java/org/Ali/start_bosganlar.txt");
-//                        BufferedReader bufferred_reader = new BufferedReader(reader);
-//                        String line = bufferred_reader.readLine();
-//                        while (line != null) {
-//                            String[] s;
-//                            s = line.split("~");
-//                            startbosganlar.add(new Start_bosganlar(s[0], s[1]));
-//                            line = bufferred_reader.readLine();
-//                        }
-//                        reader.close();
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
+            if (test_kodi == 1) {
+                if (!"test_kodi.txt".isEmpty()) {
+                    try {
+                        reader = new FileReader("src/main/java/org/Ali/test_kodi.txt");
+                        BufferedReader bufferred_reader = new BufferedReader(reader);
+                        String line = bufferred_reader.readLine();
+                        test_kodi = Integer.parseInt(line);
+                        reader.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            if (admins.isEmpty()) {
+                reader = new FileReader("src/main/java/org/Ali/admins.txt");
+                BufferedReader bufferred_reader = new BufferedReader(reader);
+                String line = bufferred_reader.readLine();
+                while (line != null) {
+                    admins.add(new Admins(line));
+                    line = bufferred_reader.readLine();
+                }
+                reader.close();
+            }
+            if (ismlar.isEmpty()) {
+                if (!"ismlar.txt".isEmpty()) {
+                    try {
+                        reader = new FileReader("src/main/java/org/Ali/ismlar.txt");
+                        BufferedReader bufferred_reader = new BufferedReader(reader);
+                        String line = bufferred_reader.readLine();
+                        while (line != null) {
+                            String[] s;
+                            s = line.split("~");
+                            ismlar.add(new Ism_familiya(s[0], s[1]));
+                            line = bufferred_reader.readLine();
+                        }
+                        reader.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            if (tuzgan_savollar_arrayList.size() == 0) {
+                if (!"tuzilgan_savollar.txt".isEmpty()) {
+                    try {
+                        reader = new FileReader("src/main/java/org/Ali/tuzilgan_savollar.txt");
+                        BufferedReader bufferred_reader = new BufferedReader(reader);
+                        String line = bufferred_reader.readLine();
+                        while (line != null) {
+                            String[] s = new String[6];
+                            s = line.split("~");
+                            tuzgan_savollar_arrayList.add(new Tuzgan_savollar(s[0], s[1], s[2], Integer.parseInt(s[3]), s[4], s[5]));
+                            line = bufferred_reader.readLine();
+                        }
+                        reader.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            if (berilgan_javoblar_arrayList.size() == 0) {
+                if (!"berilgan_javoblar.txt".isEmpty()) {
+                    try {
+                        reader = new FileReader("src/main/java/org/Ali/berilgan_javoblar.txt");
+                        BufferedReader bufferred_reader = new BufferedReader(reader);
+                        String line = bufferred_reader.readLine();
+                        while (line != null) {
+                            String[] s;
+                            s = line.split("~");
+                            berilgan_javoblar_arrayList.add(new Berilgan_javoblar(s[0], s[1], Integer.parseInt(s[2]), s[3], s[4], s[5]));
+                            line = bufferred_reader.readLine();
+                        }
+                        reader.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            if (startbosganlar.size() == 0) {
+                if (!"start_bosganlar.txt".isEmpty()) {
+                    try {
+                        reader = new FileReader("src/main/java/org/Ali/start_bosganlar.txt");
+                        BufferedReader bufferred_reader = new BufferedReader(reader);
+                        String line = bufferred_reader.readLine();
+                        while (line != null) {
+                            String[] s;
+                            s = line.split("~");
+                            startbosganlar.add(new Start_bosganlar(s[0], s[1]));
+                            line = bufferred_reader.readLine();
+                        }
+                        reader.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
 
             // ----------------------------------------------Fayllardan o`qish tamom -------------------------------------------------
 
@@ -207,12 +208,12 @@ public class Bot extends TelegramLongPollingBot {
                                 }
                                 if (t == startbosganlar.size()) {
                                     startbosganlar.add(new Start_bosganlar(update.getMessage().getFrom().getFirstName(), String.valueOf(update.getMessage().getFrom().getId())));
-//                                    writer = new FileWriter("src/main/java/org/Ali/start_bosganlar.txt");
-//                                    for (int qwertr = 0; qwertr < startbosganlar.size(); qwertr++) {
-//                                        start_bosganlar_string += startbosganlar.get(qwertr).getIsmi() + "~" + startbosganlar.get(qwertr).getId() + "\n";
-//                                    }
-//                                    writer.write(start_bosganlar_string);
-//                                    writer.close();
+                                    writer = new FileWriter("src/main/java/org/Ali/start_bosganlar.txt");
+                                    for (int qwertr = 0; qwertr < startbosganlar.size(); qwertr++) {
+                                        start_bosganlar_string += startbosganlar.get(qwertr).getIsmi() + "~" + startbosganlar.get(qwertr).getId() + "\n";
+                                    }
+                                    writer.write(start_bosganlar_string);
+                                    writer.close();
                                 }
                                 int yoq = 0;
                                 for (int i = 0; i < ismlar.size(); i++) {
@@ -294,32 +295,32 @@ public class Bot extends TelegramLongPollingBot {
                                             } else {
                                                 ismlar.get(i).setIsm_familiya(ismi);
                                                 sendMessage.setText("\uD83D\uDD04 Ism familiyangiz " + ismi + "'ga o`zgartirildi!");
-//                                                try {
-//                                                    writer = new FileWriter("src/main/java/org/Ali/ismlar.txt");
-//                                                    for (int qwewq = 0; qwewq < ismlar.size(); qwewq++) {
-//                                                        ismlar_string += ismlar.get(qwewq).getIsm_familiya() + "~" + ismlar.get(qwewq).getId() + "\n";
-//                                                    }
-//                                                    writer.write(ismlar_string);
-//                                                    writer.close();
-//                                                } catch (IOException e) {
-//                                                    e.printStackTrace();
-//                                                }
+                                                try {
+                                                    writer = new FileWriter("src/main/java/org/Ali/ismlar.txt");
+                                                    for (int qwewq = 0; qwewq < ismlar.size(); qwewq++) {
+                                                        ismlar_string += ismlar.get(qwewq).getIsm_familiya() + "~" + ismlar.get(qwewq).getId() + "\n";
+                                                    }
+                                                    writer.write(ismlar_string);
+                                                    writer.close();
+                                                } catch (IOException e) {
+                                                    e.printStackTrace();
+                                                }
 
                                                 execute(sendMessage);
                                             }
                                         }
                                         if (bormi == ismlar.size()) {
                                             ismlar.add(new Ism_familiya(ismi, update.getMessage().getFrom().getId().toString()));
-//                                            try {
-//                                                writer = new FileWriter("src/main/java/org/Ali/ismlar.txt");
-//                                                for (int i = 0; i < ismlar.size(); i++) {
-//                                                    ismlar_string += ismlar.get(i).getIsm_familiya() + "~" + ismlar.get(i).getId() + "\n";
-//                                                }
-//                                                writer.write(ismlar_string);
-//                                                writer.close();
-//                                            } catch (IOException e) {
-//                                                e.printStackTrace();
-//                                            }
+                                            try {
+                                                writer = new FileWriter("src/main/java/org/Ali/ismlar.txt");
+                                                for (int i = 0; i < ismlar.size(); i++) {
+                                                    ismlar_string += ismlar.get(i).getIsm_familiya() + "~" + ismlar.get(i).getId() + "\n";
+                                                }
+                                                writer.write(ismlar_string);
+                                                writer.close();
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
                                             sendMessage.setText("Tabriklaymiz " + ismi + " !!! Botdan foydalanishingiz mumkin.✅");
                                             execute(sendMessage);
                                         }
@@ -383,10 +384,9 @@ public class Bot extends TelegramLongPollingBot {
                                         execute(sendMessage);
                                     } else if (xabar.equals("Start bosgan hamma")) {
                                         xabari_qanday = 1;
-
                                         String start = "";
                                         long t = 1;
-                                        for (int j = 1; j < startbosganlar.size(); j++) {
+                                        for (int j = 0; j < startbosganlar.size(); j++) {
                                             start += t + ". " + startbosganlar.get(j).getIsmi() + " " + startbosganlar.get(j).getId() + "\n";
                                             t++;
                                         }
@@ -396,7 +396,7 @@ public class Bot extends TelegramLongPollingBot {
 
                                     } else if (xabar.equals("Ismini kiritganlar")) {
                                         xabari_qanday = 1;
-
+                                        sendMessage.setParseMode(ParseMode.MARKDOWN);
                                         String ismlarr = "";
                                         int t = 1;
                                         for (int j = 0; j < ismlar.size(); j++) {
@@ -458,12 +458,12 @@ public class Bot extends TelegramLongPollingBot {
                                             id_admin += xabar.charAt(j);
                                         }
                                         admins.add(new Admins(id_admin));
-//                                        writer = new FileWriter("src/main/java/org/Ali/admins.txt");
-//                                        for (int j = 0; j < admins.size(); j++) {
-//                                            adminlar_string += admins.get(j).getId() + "\n";
-//                                        }
-//                                        writer.write(adminlar_string);
-//                                        writer.close();
+                                        writer = new FileWriter("src/main/java/org/Ali/admins.txt");
+                                        for (int j = 0; j < admins.size(); j++) {
+                                            adminlar_string += admins.get(j).getId() + "\n";
+                                        }
+                                        writer.write(adminlar_string);
+                                        writer.close();
                                         sendMessage2.setChatId(id_admin);
                                         sendMessage2.setText("@Javob_tekshir_bot botiga @Sorry_no_this_username tomonidan adminlikka tayinlandinggiz!");
                                         sendMessage.setText("Adminlar safiga qo`shildi ✅\n" +
@@ -478,12 +478,12 @@ public class Bot extends TelegramLongPollingBot {
                                         for (int j = 0; j < admins.size(); j++) {
                                             if (id_admin.equals(admins.get(j).getId())) {
                                                 admins.remove(admins.get(j));
-//                                                writer = new FileWriter("src/main/java/org/Ali/admins.txt");
-//                                                for (int zxc = 0; zxc < admins.size(); zxc++) {
-//                                                    adminlar_string += admins.get(zxc).getId() + "\n";
-//                                                }
-//                                                writer.write(adminlar_string);
-//                                                writer.close();
+                                                writer = new FileWriter("src/main/java/org/Ali/admins.txt");
+                                                for (int zxc = 0; zxc < admins.size(); zxc++) {
+                                                    adminlar_string += admins.get(zxc).getId() + "\n";
+                                                }
+                                                writer.write(adminlar_string);
+                                                writer.close();
                                                 sendMessage2.setChatId(id_admin);
                                                 sendMessage2.setText("@Javob_tekshir_bot botidan @Sorry_no_this_username tomonidan adminlikdan chiqarildinggiz!");
                                                 sendMessage.setText("Ro`yxatdan chiqarildi \n" +
@@ -585,20 +585,20 @@ public class Bot extends TelegramLongPollingBot {
                                                     Fan_nomi, ornatilgan_javob, ornatilgan_javoblar_soni, update.getMessage().getFrom().getId().toString(),
                                                     update.getMessage().getFrom().getUserName());
                                             tuzgan_savollar_arrayList.add(tuzgan_savollar);
-//                                            try {
-//                                                writer = new FileWriter("src/main/java/org/Ali/tuzilgan_savollar.txt");
-//                                                for (int qwewq = 0; qwewq < tuzgan_savollar_arrayList.size(); qwewq++) {
-//                                                    tuzilgan_savollar_string += tuzgan_savollar_arrayList.get(qwewq).getKodi() + "~" +
-//                                                            tuzgan_savollar_arrayList.get(qwewq).getFan_nomi() + "~" +
-//                                                            tuzgan_savollar_arrayList.get(qwewq).getHaqiqiy_javob() + "~" +
-//                                                            String.valueOf(tuzgan_savollar_arrayList.get(qwewq).getHaqiqiy_javoblar_soni()) + "~" +
-//                                                            tuzgan_savollar_arrayList.get(qwewq).getId() + "~" + tuzgan_savollar_arrayList.get(qwewq).getUsername() + "\n";
-//                                                }
-//                                                writer.write(tuzilgan_savollar_string);
-//                                                writer.close();
-//                                            } catch (IOException e) {
-//                                                e.printStackTrace();
-//                                            }
+                                            try {
+                                                writer = new FileWriter("src/main/java/org/Ali/tuzilgan_savollar.txt");
+                                                for (int qwewq = 0; qwewq < tuzgan_savollar_arrayList.size(); qwewq++) {
+                                                    tuzilgan_savollar_string += tuzgan_savollar_arrayList.get(qwewq).getKodi() + "~" +
+                                                            tuzgan_savollar_arrayList.get(qwewq).getFan_nomi() + "~" +
+                                                            tuzgan_savollar_arrayList.get(qwewq).getHaqiqiy_javob() + "~" +
+                                                            String.valueOf(tuzgan_savollar_arrayList.get(qwewq).getHaqiqiy_javoblar_soni()) + "~" +
+                                                            tuzgan_savollar_arrayList.get(qwewq).getId() + "~" + tuzgan_savollar_arrayList.get(qwewq).getUsername() + "\n";
+                                                }
+                                                writer.write(tuzilgan_savollar_string);
+                                                writer.close();
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
 
 
                                             test_kodi++;
@@ -630,9 +630,9 @@ public class Bot extends TelegramLongPollingBot {
                                                 }
                                             }
 
-//                                            writer = new FileWriter("src/main/java/org/Ali/test_kodi.txt");
-//                                            writer.write(String.valueOf(test_kodi));
-//                                            writer.close();
+                                            writer = new FileWriter("src/main/java/org/Ali/test_kodi.txt");
+                                            writer.write(String.valueOf(test_kodi));
+                                            writer.close();
 
 
                                             sendMessage.setChatId(update.getMessage().getChatId().toString());
@@ -733,16 +733,16 @@ public class Bot extends TelegramLongPollingBot {
 
                                                     berilgan_javoblar_arrayList.add(berilgan_javoblar);
 
-//                                                    writer = new FileWriter("src/main/java/org/Ali/berilgan_javoblar.txt");
-//                                                    for (int qwer = 0; qwer < berilgan_javoblar_arrayList.size(); qwer++) {
-//                                                        berilgan_javoblar_string += berilgan_javoblar_arrayList.get(qwer).getTest_kodi() + "~" +
-//                                                                berilgan_javoblar_arrayList.get(qwer).getIsmi() + "~" +
-//                                                                String.valueOf(berilgan_javoblar_arrayList.get(qwer).getToplagan_bali()) + "~" +
-//                                                                berilgan_javoblar_arrayList.get(qwer).getUsername() + "~" +
-//                                                                berilgan_javoblar_arrayList.get(qwer).getId() + "~" + berilgan_javoblar_arrayList.get(qwer).getXato_javoblari() + "\n";
-//                                                    }
-//                                                    writer.write(berilgan_javoblar_string);
-//                                                    writer.close();
+                                                    writer = new FileWriter("src/main/java/org/Ali/berilgan_javoblar.txt");
+                                                    for (int qwer = 0; qwer < berilgan_javoblar_arrayList.size(); qwer++) {
+                                                        berilgan_javoblar_string += berilgan_javoblar_arrayList.get(qwer).getTest_kodi() + "~" +
+                                                                berilgan_javoblar_arrayList.get(qwer).getIsmi() + "~" +
+                                                                String.valueOf(berilgan_javoblar_arrayList.get(qwer).getToplagan_bali()) + "~" +
+                                                                berilgan_javoblar_arrayList.get(qwer).getUsername() + "~" +
+                                                                berilgan_javoblar_arrayList.get(qwer).getId() + "~" + berilgan_javoblar_arrayList.get(qwer).getXato_javoblari() + "\n";
+                                                    }
+                                                    writer.write(berilgan_javoblar_string);
+                                                    writer.close();
 
 
                                                     sendMessage.setChatId(update.getMessage().getChatId().toString());
@@ -977,31 +977,31 @@ public class Bot extends TelegramLongPollingBot {
                             }
                         }
 
-//                        try {
-//                            writer = new FileWriter("src/main/java/org/Ali/tuzilgan_savollar.txt");
-//                            for (int qwewq = 0; qwewq < tuzgan_savollar_arrayList.size(); qwewq++) {
-//                                tuzilgan_savollar_string += tuzgan_savollar_arrayList.get(qwewq).getKodi() + "~" +
-//                                        tuzgan_savollar_arrayList.get(qwewq).getFan_nomi() + "~" +
-//                                        tuzgan_savollar_arrayList.get(qwewq).getHaqiqiy_javob() + "~" +
-//                                        String.valueOf(tuzgan_savollar_arrayList.get(qwewq).getHaqiqiy_javoblar_soni()) + "~" +
-//                                        tuzgan_savollar_arrayList.get(qwewq).getId() + "~" + tuzgan_savollar_arrayList.get(qwewq).getUsername() + "\n";
-//                            }
-//                            writer.write(tuzilgan_savollar_string);
-//                            writer.close();
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                        writer = new FileWriter("src/main/java/org/Ali/berilgan_javoblar.txt");
-//                        for (int qwer = 0; qwer < berilgan_javoblar_arrayList.size(); qwer++) {
-//                            berilgan_javoblar_string += berilgan_javoblar_arrayList.get(qwer).getTest_kodi() + "~" +
-//                                    berilgan_javoblar_arrayList.get(qwer).getIsmi() + "~" +
-//                                    String.valueOf(berilgan_javoblar_arrayList.get(qwer).getToplagan_bali()) + "~" +
-//                                    berilgan_javoblar_arrayList.get(qwer).getUsername() + "~" +
-//                                    berilgan_javoblar_arrayList.get(qwer).getId() + "~" + berilgan_javoblar_arrayList.get(qwer).getXato_javoblari() + "\n";
-//                        }
-//                        writer.write(berilgan_javoblar_string);
-//                        writer.close();
+                        try {
+                            writer = new FileWriter("src/main/java/org/Ali/tuzilgan_savollar.txt");
+                            for (int qwewq = 0; qwewq < tuzgan_savollar_arrayList.size(); qwewq++) {
+                                tuzilgan_savollar_string += tuzgan_savollar_arrayList.get(qwewq).getKodi() + "~" +
+                                        tuzgan_savollar_arrayList.get(qwewq).getFan_nomi() + "~" +
+                                        tuzgan_savollar_arrayList.get(qwewq).getHaqiqiy_javob() + "~" +
+                                        String.valueOf(tuzgan_savollar_arrayList.get(qwewq).getHaqiqiy_javoblar_soni()) + "~" +
+                                        tuzgan_savollar_arrayList.get(qwewq).getId() + "~" + tuzgan_savollar_arrayList.get(qwewq).getUsername() + "\n";
+                            }
+                            writer.write(tuzilgan_savollar_string);
+                            writer.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        writer = new FileWriter("src/main/java/org/Ali/berilgan_javoblar.txt");
+                        for (int qwer = 0; qwer < berilgan_javoblar_arrayList.size(); qwer++) {
+                            berilgan_javoblar_string += berilgan_javoblar_arrayList.get(qwer).getTest_kodi() + "~" +
+                                    berilgan_javoblar_arrayList.get(qwer).getIsmi() + "~" +
+                                    String.valueOf(berilgan_javoblar_arrayList.get(qwer).getToplagan_bali()) + "~" +
+                                    berilgan_javoblar_arrayList.get(qwer).getUsername() + "~" +
+                                    berilgan_javoblar_arrayList.get(qwer).getId() + "~" + berilgan_javoblar_arrayList.get(qwer).getXato_javoblari() + "\n";
+                        }
+                        writer.write(berilgan_javoblar_string);
+                        writer.close();
 
                         sendMessage_call_back.setText(yakuniy_jadval);
 
@@ -1017,6 +1017,8 @@ public class Bot extends TelegramLongPollingBot {
                 }
             }
         } catch (TelegramApiException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
